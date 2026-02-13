@@ -1,0 +1,38 @@
+[build-system]
+requires = ["hatchling >= 1.26"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/umep_inputs"]
+
+[project]
+name = "umep_inputs"
+version = "0.0.1"
+dependencies = [
+  "geopandas>=1.1.1",
+  "laspy>=2.6.1",
+  "matplotlib>=3.10.8",
+  "numpy>=2.4.2",
+  "pandas>=3.0.0",
+  "rasterio>=1.4.3",
+  "Requests>=2.32.5",
+  "scipy>=1.17.0",
+  "Shapely>=2.1.2",
+  "startinpy>=0.12.2"
+]
+authors = [
+  { name="Anne den Hartog", email="ahartog@tudelft.nl" },
+]
+description = "This package can automatically generate the necessary input files for running SOLWEIG & URock outside of QGIS"
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "GPL-3.0-or-later"
+license-files = ["LICEN[CS]E*"]
+
+[project.urls]
+Homepage = "https://github.com/pypa/sampleproject"
+Issues = "https://github.com/pypa/sampleproject/issues"

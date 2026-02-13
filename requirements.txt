@@ -1,0 +1,10 @@
+geopandas==1.1.1
+laspy==2.6.1
+matplotlib==3.10.8
+numpy==2.4.2
+pandas==3.0.0
+rasterio==1.4.3
+Requests==2.32.5
+scipy==1.17.0
+Shapely==2.1.2
+startinpy==0.12.2
