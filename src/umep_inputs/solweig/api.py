@@ -11,6 +11,7 @@ from umep_inputs.solweig.io_utils import plot_geojson, show_raster_array, visual
 from umep_inputs.solweig.processing.dems import DEMS
 from umep_inputs.solweig.processing.chm import CHM
 from umep_inputs.solweig.processing.landcover import LandCover
+from importlib.resources import files, as_file
 
 __all__ = [
     "load_buildings",
@@ -18,8 +19,8 @@ __all__ = [
     "load_chm",
     "load_landcover",
     "generate_solweig_inputs",
+    "test_data_access"
 ]
-
 
 def load_buildings(bbox, output_folder, plot=False, wfs_url="https://data.3dbag.nl/api/BAG3D/wfs", layer_name="BAG3D:lod13", gpkg_name="buildings", output_layer_name="buildings"):
     """
@@ -39,7 +40,8 @@ def load_buildings(bbox, output_folder, plot=False, wfs_url="https://data.3dbag.
     """
     # Initialize the Buildings class
     buildings_obj = Buildings(bbox, wfs_url, layer_name, gpkg_name, output_folder, output_layer_name)
-    
+    print("I am able to change things bby!")
+    print(test_data_access())
     # Optionally plot
     if plot:
         plot_geojson(buildings_obj.building_geometries, color="pink")
@@ -263,3 +265,22 @@ def generate_solweig_inputs(
             "chm": str(out_dir / "CHM.tif"),
         },
     }
+
+
+def test_data_access():
+    try:
+        # Check if AHN_lookup.geojson file can be accessed
+        resource = files("umep_inputs").joinpath("geotiles/AHN_lookup.geojson")
+        with as_file(resource) as path:
+            print(f"File successfully found: {path}")
+        
+        # Test accessing any file in the 'databases' folder
+        db_dir = files("umep_inputs").joinpath("databases")
+        for file in db_dir.rglob("*"):
+            if file.is_file():
+                print(f"File found in 'databases' folder: {file}")
+        
+        return True
+    except Exception as e:
+        print(f"Error accessing data files: {e}")
+        return False

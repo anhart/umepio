@@ -2,12 +2,9 @@
 requires = ["hatchling >= 1.26"]
 build-backend = "hatchling.build"
 
-[tool.hatch.build.targets.wheel]
-packages = ["src/umep_inputs"]
-
 [project]
 name = "umep_inputs"
-version = "0.0.4"
+version = "0.0.13"
 dependencies = [
   "geopandas>=1.1.1",
   "laspy>=2.0",
@@ -15,7 +12,7 @@ dependencies = [
   "numpy>=2.0",
   "pandas>=1.0.0",
   "rasterio>=1.0",
-  "Requests>=2.32.0",
+  "requests>=2.32.0",
   "scipy>=1.12",
   "Shapely>=2.1",
   "startinpy>=0.12.2"
@@ -32,6 +29,26 @@ classifiers = [
 ]
 license = "GPL-3.0-or-later"
 license-files = ["LICEN[CS]E*"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["umep_inputs"]  
+
+[tool.hatch.build.targets.wheel.sources]
+"src" = ""
+
+[tool.hatch.build]
+# Ensure data files are included in addition to the code
+include = [
+  "src/umep_inputs/geotiles/*",
+  "src/umep_inputs/databases/*"
+]
+
+[tool.hatch.build.targets.sdist]
+# Ensure data files are included in the sdist
+include = [
+  "src/umep_inputs/geotiles/*",
+  "src/umep_inputs/databases/*"
+]
 
 [project.urls]
 Homepage = "https://github.com/pypa/sampleproject"

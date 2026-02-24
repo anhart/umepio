@@ -13,7 +13,7 @@ from pathlib import Path
 import laspy
 from scipy.spatial import cKDTree
 from scipy.ndimage import median_filter, label
-
+from importlib.resources import files, as_file
 
 class CHM:
     '''
@@ -61,10 +61,23 @@ class CHM:
         self.dsm = dsm
         self.tree_mask = None
         self.output_folder_chm = output_folder_chm
-        self.gdf = gpd.read_file("src/umep_inputs/geotiles/AHN_lookup.geojson")
+        self.gdf = self.read_lookup()
         self.chm, self.tree_polygons, self.transform = self.init_chm(bbox, output_folder=output_folder_las, input_folder=output_folder_las, merged_output=merged_output,  ndvi_threshold=ndvi_threshold, resolution=resolution)
         self.trunk_array = self.chm * (trunk_height / 100 )
         self.original_chm, self.og_polygons, self.original_trunk = self.chm, self.tree_polygons, self.trunk_array
+    
+    def read_lookup(self):
+        '''
+        Read the lookup file (AHN_lookup.geojson) and return it as a GeoDataFrame.
+        Includes basic error handling for missing or inaccessible files.
+        '''
+        try:
+            resource = files("umep_inputs").joinpath("geotiles/AHN_lookup.geojson")
+            with as_file(resource) as path:
+                self.gdf = gpd.read_file(path)
+        except Exception as e:
+            print(f"Error reading AHN_lookup.geojson: {e}")
+            self.gdf = None  # You can handle this accordingly
 
     def save_las(self, merged_las, veg_points, output_name="veg_points.las"):
         '''

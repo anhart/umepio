@@ -8,6 +8,7 @@ from umep_inputs.solweig.api import (
     load_chm,
     load_landcover,
     generate_solweig_inputs,
+    test_data_access
 )
 
 __all__ = [
@@ -16,4 +17,5 @@ __all__ = [
     "load_chm",
     "load_landcover",
     "generate_solweig_inputs",
+    "test_data_access"
 ]
