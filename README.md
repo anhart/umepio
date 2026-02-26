@@ -26,4 +26,4 @@ Generate some of the files as needed.
     landcover = umep_inputs.load_landcover(bbox, "output_folder")
 ```
 
-The repository builds on the work done by Jessica Monahan, [SOLFD](https://github.com/jsscmnhn/SOLWEIG_SOLFD) (2025). The logic is the same but the code is reformated (and polished) to work as a standalone pip package. 
+The repository builds on the work done by Jessica Monahan, [SOLFD](https://github.com/jsscmnhn/SOLWEIG_SOLFD) (2025). The logic is the same but the code is reformatted and polished to work as a standalone pip package. 
