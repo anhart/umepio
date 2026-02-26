@@ -1,6 +1,6 @@
 # Generating UMEP inputs
 
-This package automatically generates the neccesary input data for running UMEP solvers SOLWEIG and URock in the Netherlands.
+This package automatically generates the neccesary input data for running UMEP solver SOLWEIG in the Netherlands.
 It needs to be given a bounding box and an output folder and generates the files needed to run SOLWEIG_GPU.
 
 Generate all the files at once.
@@ -25,3 +25,5 @@ Generate some of the files as needed.
     # bounding box, path to output folder
     landcover = umep_inputs.load_landcover(bbox, "output_folder")
 ```
+
+The repository builds on the work done by Jessica Monahan, [SOLFD](https://github.com/jsscmnhn/SOLWEIG_SOLFD) (2025). The logic is the same but the code is reformated (and polished) to work as a standalone pip package. 
