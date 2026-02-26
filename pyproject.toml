@@ -3,11 +3,12 @@ requires = ["hatchling >= 1.26"]
 build-backend = "hatchling.build"
 
 [project]
-name = "umep_inputs"
-version = "0.0.13"
+name = "umepio"
+version = "0.0.30"
 dependencies = [
   "geopandas>=1.1.1",
-  "laspy>=2.0",
+  "laspy>=2.6.1",
+  "laszip>=0.2.3",
   "matplotlib>=3.10",
   "numpy>=2.0",
   "pandas>=1.0.0",
@@ -20,7 +21,7 @@ dependencies = [
 authors = [
   { name="Anne den Hartog", email="ahartog@tudelft.nl" },
 ]
-description = "This package can automatically generate the necessary input files for running SOLWEIG & URock outside of QGIS"
+description = "This package can automatically generate the necessary input files for running the UMEP SOLWEIG solver"
 readme = "README.md"
 requires-python = ">=3.9"
 classifiers = [
@@ -31,25 +32,19 @@ license = "GPL-3.0-or-later"
 license-files = ["LICEN[CS]E*"]
 
 [tool.hatch.build.targets.wheel]
-packages = ["umep_inputs"]  
-
-[tool.hatch.build.targets.wheel.sources]
-"src" = ""
-
-[tool.hatch.build]
-# Ensure data files are included in addition to the code
-include = [
-  "src/umep_inputs/geotiles/*",
-  "src/umep_inputs/databases/*"
-]
+packages = ["src/umepio"]
 
 [tool.hatch.build.targets.sdist]
-# Ensure data files are included in the sdist
 include = [
-  "src/umep_inputs/geotiles/*",
-  "src/umep_inputs/databases/*"
+  "src/umepio/**"
+]
+
+[tool.hatch.build]
+include = [
+  "src/umepio/geotiles/*",
+  "src/umepio/databases/*"
 ]
 
 [project.urls]
-Homepage = "https://github.com/pypa/sampleproject"
-Issues = "https://github.com/pypa/sampleproject/issues"
+Homepage = "https://github.com/anhart/umepio/"
+Issues = "https://github.com/anhart/umepio/issues"
