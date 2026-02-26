@@ -7,7 +7,7 @@ Generate all the files at once.
 
 ```Python
     import umep_inputs
-    bbox = (94040,437614, 95230, 439399) #bounding box in Amersfoort / RD new
+    bbox = (94040,437614,94251,437797) #bounding box in Amersfoort / RD new
     inputs = umep_inputs.generate_solweig_inputs(bbox, "test_output")
 ```
 Generate some of the files as needed.
